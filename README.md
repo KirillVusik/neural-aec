@@ -40,6 +40,6 @@ Note: Please feel free to skip this section if you would like to run with the pr
    
 ### Run application:
 
-1. Make sure that the ```MODEL_PATH``` is a valid path to model
+1. Make sure that the ```MODEL_ARCHITECTURE``` and the ```MODEL_WEIGHTS``` in the ```config.py``` are valid paths to model
 2. Set the current directory to be the repository root
 3. python app.py
