@@ -11,9 +11,9 @@ Limitations:
 ## Install
 ### Install required pyhton packages
 
-CPU: ```pip install requirements.txt```
+CPU: ```pip install -r requirements.txt```
 
-GPU: ```pip install requirements-gpu.txt```
+GPU: ```pip install -r requirements-gpu.txt```
 
 Note: the only difference of between the ```requirements-gpu.txt``` and the standard one is a tensorflow-gpu
 
