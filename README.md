@@ -3,8 +3,8 @@ Attempt to implement an Neural Arithmetic Expression Calculator
 
 Limitations:
   * Only integers are allowed
-  * Numbers are in range [-99, 99]
-  * Max numbers in expression: 4
+  * Numbers are in a range [-99, 99]
+  * Max numbers in a expression: 4
   * Allowed operations: +, -
   * Max expression length (w/o whitespaces): 16
 
