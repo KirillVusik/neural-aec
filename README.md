@@ -23,7 +23,7 @@ Note: Please feel free to skip this section if you would like to run with the pr
 
 1. Generate dataset for training:
 
-   ```python generate_datasets.py --count <SAMPLES_COUNT> --output_path <DATASET_PATH>```
+   ```python generate_dataset.py --count <SAMPLES_COUNT> --output_path <DATASET_PATH>```
 2. Train models:
 
    ```python train_models.py --datasets_path <DATASET_PATH> --output <MODEL PATH>```
