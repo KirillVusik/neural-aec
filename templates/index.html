@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1>Neural arithmetic expression calculator</h1>
+    <p>Calculates some arithmetical expressions<p>
+    <span>
+        Limitations:<br>
+        &bull; Only integers are allowed<br>
+        &bull; Numbers are in range [{{ min_number }}, {{ max_number }}]<br>
+        &bull; Max numbers in expression: {{max_numbers_in_expression}}<br>
+        &bull; Allowed operations: {{ operations }}<br>
+        &bull; Max expression length: {{ max_length }}<br>
+    </span>
+    <div class="container">
+        <div>
+            <label for="expression">Expression</label>
+            <input type="text" id="expression" name="expression"">
+            <input type="button" value='Calculate' onclick="calculate()">
+        </div>
+        <div>
+            <label for="result">Result:</label>
+            <output type="text" id="result"></output>
+        </div>
+        <div>
+            <label for="result">Expected Result:</label>
+            <output type="text" id="expected_result"></output>
+        </div>
+    </div>
+</body>
+<script>
+    async function getResult() {
+        let expression = document.getElementById("expression").value
+        let pattern = /{{ pattern }}/
+        if (!pattern.test(expression)) {
+            alert('The expression should contains only following characters: "{{ alphabet }}"');
+            throw new Error('Expression contains prohibited charactes');
+        }
+        expression = expression.replace(/\s/g,'')
+        if (expression.length > {{ max_length }}){
+            alert("Expression is too long")
+            throw new Error('Too long expression');
+        }
+        try {
+            document.getElementById('expected_result').value = eval(expression);
+        }
+        catch (e) {
+            alert("Expression is not valid and cannot be evaluated")
+            throw new Error('Not a valid mathematical expression');
+        }
+        let post_data = {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({ 'expression': expression })
+        }
+        let response = await fetch("/evaluate", post_data)
+        let data = await response.json()
+        return data
+    }
+    function calculate() {
+        getResult().then(data => {
+                document.getElementById('result').value = data.result;
+        }).catch(err => {
+                console.log(`Calculation has not been performed: ${err}`);
+        });
+    }
+</script>
+<style type="text/css">
+    .container {
+        display: grid;
+        grid-row-gap: 1em;
+    }
+</style>
+
+</html>
