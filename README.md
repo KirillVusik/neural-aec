@@ -26,18 +26,18 @@ Note: Please feel free to skip this section if you would like to run with the pr
    ```python generate_datasets.py --count <SAMPLES_COUNT> --output_path <DATASET_PATH>```
 2. Train models:
 
-	 ```python train_models.py --datasets_path <DATASET_PATH> --output <MODEL PATH>```
+   ```python train_models.py --datasets_path <DATASET_PATH> --output <MODEL PATH>```
    
    Note: there are parameters in the beginning of the train_models.py for a grid search training
 3. Set the parameters in ```config.py``` to point to the saved model, e.g:
 
    ```
-	 MODEL_ARCHITECTURE = './trained_models/architecture.json'
+   MODEL_ARCHITECTURE = './trained_models/architecture.json'
    MODEL_WEIGHTS = './trained_models/weights.json'
-   Note: I am not using checkpoint here to allow loading a CPU compatible models with weights trained on a GPU
    ```
-
-
+   
+   Note: I am not using checkpoint here to allow loading a CPU compatible models with weights trained on a GPU
+   
 ### Run application:
 
 1. Make sure that the ```MODEL_PATH``` is a valid path to model
