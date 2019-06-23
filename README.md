@@ -4,18 +4,18 @@ Attempt to implement an Neural Arithmetic Expression Calculator
 Limitations:
   * Only integers are allowed
   * Numbers are in a range [-99, 99]
-  * Max numbers in a expression: 4
+  * Max numbers in expression: 4
   * Allowed operations: +, -
   * Max expression length (w/o whitespaces): 16
 
 ## Install
-### Install required pyhton packages
+### Install required Python packages
 
 CPU: ```pip install -r requirements.txt```
 
 GPU: ```pip install -r requirements-gpu.txt```
 
-Note: the only difference of between the ```requirements-gpu.txt``` and the standard one is a tensorflow-gpu
+Note: the only difference of the ```requirements-gpu.txt``` from the standard one ```tensorflow-gpu```
 
 ### Train a model from scratch:
 	
@@ -28,12 +28,12 @@ Note: Please feel free to skip this section if you would like to run with the pr
 
    ```python train_models.py --datasets_path <DATASET_PATH> --output <MODEL PATH>```
    
-   Note: there are parameters in the beginning of the train_models.py for a grid search training
-3. Set the parameters in ```config.py``` to point to the saved model, e.g:
+   Note: there are parameters in the beginning of the train_models.py for a grid search training configuration.
+3. Set the parameters in ```config.py``` to point to the saved model you neen, e.g:
 
    ```
-   MODEL_ARCHITECTURE = './trained_models/architecture.json'
-   MODEL_WEIGHTS = './trained_models/weights.json'
+   MODEL_ARCHITECTURE = './trained_models/some-architecture.json'
+   MODEL_WEIGHTS = './trained_models/some-weights.json'
    ```
    
    Note: I am not using checkpoint here to allow loading a CPU compatible models with weights trained on a GPU
