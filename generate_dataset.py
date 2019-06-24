@@ -11,40 +11,35 @@ from model import OPERATIONS, MAX_EXPRESSION_LENGTH, MAX_RESULT_LENGTH,\
     MIN_NUMBER, MAX_NUMBER, MAX_NUMBER_IN_EXPRESSION, VECTOR_SIZE
 
 
-class _Expression(object):
-    # taken from stackoverflow
+class _Expression:
     OPS = OPERATIONS
     GROUP_PROB = 0.3
     MIN_NUM, MAX_NUM = MIN_NUMBER, MAX_NUMBER
 
-    def __init__(self, maxNumbers, _maxdepth=None, _depth=0):
-        """
-        maxNumbers has to be a power of 2
-        """
-        if _maxdepth is None:
-            _maxdepth = math.log(maxNumbers, 2) - 1
+    def __init__(self, max_numbers):
+        self._expression = str(random.randint(MIN_NUMBER, MAX_NUMBER))
+        numbers_count = random.randint(2, max_numbers)
+        for _ in range(1, numbers_count):
+            left = self._expression
+            left = self._maybe_group(left)
+            right = str(random.randint(MIN_NUMBER, MAX_NUMBER))
+            right = self._maybe_group(right)
+            # always group negatives on the right side
+            if random.random() < 0.5:
+                left, right = right, left
+            if right.startswith('-'):
+                right = '({})'.format(right)
+            op = random.choice(self.OPS)
+            self._expression = "{0}{1}{2}".format(left, op, right)
 
-        if _depth < _maxdepth and random.randint(0, _maxdepth) > _depth:
-            self.left = _Expression(maxNumbers, _maxdepth, _depth + 1)
+    def _maybe_group(self, expression):
+        if (random.random() < self.GROUP_PROB):
+            return '({})'.format(expression)
         else:
-            self.left = random.randint(
-                _Expression.MIN_NUM, _Expression.MAX_NUM)
-
-        if _depth < _maxdepth and random.randint(0, _maxdepth) > _depth:
-            self.right = _Expression(maxNumbers, _maxdepth, _depth + 1)
-        else:
-            self.right = random.randint(
-                _Expression.MIN_NUM, _Expression.MAX_NUM)
-
-        self.grouped = random.random() < _Expression.GROUP_PROB
-        self.operator = random.choice(_Expression.OPS)
+            return expression
 
     def __str__(self):
-        s = '{0!s}{1}{2!s}'.format(self.left, self.operator, self.right)
-        if self.grouped:
-            return '({0})'.format(s)
-        else:
-            return s
+        return self._expression
 
 
 def generate_expression():
