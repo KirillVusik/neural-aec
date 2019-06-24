@@ -14,7 +14,6 @@ MAX_NUMBER = 99
 MIN_NUMBER = -99
 MAX_NUMBER_IN_EXPRESSION = 4
 MAX_RESULT_LENGTH = 4
-IS_CUDNN = tf.test.is_gpu_available(cuda_only=True)
 
 
 class _OneHotEncoder():
@@ -44,13 +43,11 @@ encoder = _OneHotEncoder(ALPHABET)
 
 
 def build_model(rnn_type, encode_layers_count, encode_units_count,
-                decode_layers_count, decode_units_count,
-                force_cpu_layers=False):
-    use_gpu_layers = IS_CUDNN and not force_cpu_layers
+                decode_layers_count, decode_units_count):
     if rnn_type == 'LSTM':
-        RNN = CuDNNLSTM if use_gpu_layers else LSTM
+        RNN = LSTM
     elif rnn_type == 'GRU':
-        RNN = CuDNNGRU if use_gpu_layers else GRU
+        RNN = GRU
     else:
         raise ValueError(
             'RNN_type expected to be LSTM or GRU, got: {}'.format(rnn_type))
@@ -76,9 +73,8 @@ def build_model(rnn_type, encode_layers_count, encode_units_count,
     decoder_description = rnn_stack_description.format(
         decode_layers_count, decode_units_count) + 'decoder'
     model = Model(inputs=input_layer, outputs=output_layer)
-    model.name = '{}_{}_{}- '.format(
+    model.name = '{}_{}_{}'.format(
         rnn_type, encoder_description, decoder_description)
-    model.name += 'gpu' if use_gpu_layers else 'cpu'
     return model
 
 
