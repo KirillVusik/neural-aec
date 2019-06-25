@@ -32,14 +32,11 @@ Note: Please feel free to skip this section if you would like to run with the pr
 3. Set the parameters in ```config.py``` to point to the saved model you neen, e.g:
 
    ```
-   MODEL_ARCHITECTURE = './trained_models/some-architecture.json'
-   MODEL_WEIGHTS = './trained_models/some-weights.json'
+   MODEL_CHECKPOINT = './trained_models/some-checkpoint.json'
    ```
-   
-   Note: I am not using checkpoint here to allow loading a CPU compatible models with weights trained on a GPU
    
 ### Run application:
 
-1. Make sure that the ```MODEL_ARCHITECTURE``` and the ```MODEL_WEIGHTS``` in the ```config.py``` are valid paths to model
+1. Make sure that the ```MODEL_CHECKPOINT``` is a valid path to model
 2. Set the current directory to be the repository root
 3. python app.py
