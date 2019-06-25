@@ -2,7 +2,7 @@ import re
 
 import numpy as np
 from flask import Flask, abort, render_template, request, jsonify
-from keras.models import model_from_json
+from keras.models import load_model
 from model import encode_expression, decode_result, ALPHABET,\
     OPERATIONS, MIN_NUMBER, MAX_NUMBER, MAX_EXPRESSION_LENGTH,\
     MAX_NUMBER_IN_EXPRESSION
@@ -10,16 +10,7 @@ from model import encode_expression, decode_result, ALPHABET,\
 app = Flask(__name__)
 app.config.from_object('config')
 
-
-def prepare_model():
-    with open(app.config['MODEL_ARCHITECTURE'], 'r') as json_file:
-        architecture = json_file.read()
-        model = model_from_json(architecture)
-    model.load_weights(app.config['MODEL_WEIGHTS'])
-    return model
-
-
-model = prepare_model()
+model = load_model(app.config['MODEL_CHECKPOINT'])
 model._make_predict_function()
 
 
