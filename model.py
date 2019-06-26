@@ -6,14 +6,14 @@ from keras.layers import Input, Dense, CuDNNLSTM, CuDNNGRU, LSTM, GRU,\
 from keras.layers.wrappers import TimeDistributed, Bidirectional
 from keras.utils import to_categorical
 
-OPERATIONS = list('+-')
+OPERATIONS = list('+-*')
 ALPHABET = list(map(str, range(10))) + OPERATIONS + list('() ')
 VECTOR_SIZE = len(ALPHABET)
 MAX_EXPRESSION_LENGTH = 16
 MAX_NUMBER = 99
 MIN_NUMBER = -99
 MAX_NUMBER_IN_EXPRESSION = 4
-MAX_RESULT_LENGTH = 4
+MAX_RESULT_LENGTH = 15
 
 
 class _OneHotEncoder():
