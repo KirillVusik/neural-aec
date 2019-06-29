@@ -5,7 +5,7 @@ Limitations:
   * Only integers are allowed
   * Numbers are in a range [-99, 99]
   * Max numbers in expression: 4
-  * Allowed operations: +, -
+  * Allowed operations: +, -, *
   * Max expression length (w/o whitespaces): 16
 
 ## Install

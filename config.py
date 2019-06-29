@@ -1,1 +1,1 @@
-MODEL_CHECKPOINT = './trained_models/LSTM_1-layers-100-units-encoder_1-layers-100-units-decoder-009-0.999995-0.999995.checkpoint.hdf5'
+MODEL_CHECKPOINT = './trained_models/GRU_2-layers-100-units-encoder_2-layers-100-units-decoder-047-0.991079-0.990958.checkpoint.hdf5'
