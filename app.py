@@ -43,7 +43,7 @@ def evaluate():
 
 
 def validate_expression(expression):
-    if set(expression) <= set(ALPHABET) and len(expression) < MAX_EXPRESSION_LENGTH:
+    if set(expression) <= set(ALPHABET) and len(expression) <= MAX_EXPRESSION_LENGTH:
         try:
             eval(expression)
             return  # OK
